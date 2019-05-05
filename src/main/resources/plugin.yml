@@ -1,0 +1,8 @@
+name: ChatFilter
+version: 1.0
+main: com.duggan.chatfilter.Main
+api-version: 1.13
+author: Duggan
+description: Allows players to filter swear-words out of chat
+commands:
+  chatfilter:
