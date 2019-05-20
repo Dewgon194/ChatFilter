@@ -24,11 +24,10 @@ public class PlayerChatListener implements Listener {
     private Main main;
     private Prefix prefix;
     private ReplacementWords replacements;
-    public PlayerChatListener(ReplacementWords replacements) {this.replacements = replacements;}
-    public PlayerChatListener(Main main) {
-        this.main = main;
+    public PlayerChatListener(ReplacementWords replacements, Main main) {
+        this.replacements = replacements;
     }
-
+    Main.get
     public String getPrefix(Player player) {
         UserData userData = Main.luckPerms.getUser(player.getUniqueId()).getCachedData();
         Contexts contexts = Main.luckPerms.getContextManager().getApplicableContexts(player);
@@ -38,10 +37,6 @@ public class PlayerChatListener implements Listener {
 
     Plugin plugin = Main.getPlugin(Main.class);
     LuckPermsApi api = LuckPerms.getApi();
-
-    public PlayerChatListener() {
-
-    }
 
     @EventHandler
     public void chatFilter(AsyncPlayerChatEvent e) {
