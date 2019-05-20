@@ -51,21 +51,23 @@ public class PlayerChatListener implements Listener {
         e.setCancelled(true);
         Player player = e.getPlayer();
         String prefix = getPrefix(player);
+        List<String> words = main.getWordsConfig().getStringList("words");
         for (Player on : Bukkit.getOnlinePlayers()) {
             UUID playerUUID = on.getUniqueId();
             String filterValue = String.valueOf(plugin.getConfig().getString("Filters." + playerUUID));
             if (filterValue.equals("on")) {
-                for (int i = 0; i < main.getWordsConfig().getStringList("words").size(); i++) {
+                player.sendMessage(String.valueOf(words));
+                for (int i = 0; i < words.size(); i++) {
                     if (message.contains(main.getWordsConfig().getStringList("words").get(i))) {
                         String ns = message.replace(main.getWordsConfig().getStringList("words").get(i), "Cabbage");
                         on.sendMessage(prefix + player.getName() + ns);
                     }
                 }
             }else if(filterValue.equals("off")){
-                on.sendMessage( prefix + player.getName() + message);
+                on.sendMessage( prefix + player.getName() + ": " + message);
 
             }else{
-                on.sendMessage( prefix + player.getName() + message);
+                on.sendMessage( prefix + player.getName() + ": " + message);
 
             }
         }
