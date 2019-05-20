@@ -22,7 +22,7 @@ public class Main extends JavaPlugin {
     public void onEnable() {
         System.out.println(ChatColor.AQUA + "ChatFilter is enabled");
         getCommand("chatfilter").setExecutor(new StartFilter(new Filters()));
-        getServer().getPluginManager().registerEvents(new PlayerChatListener(new ReplacementWords(), new Main()), this);
+        getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
         loadConfig();
         luckPerms = getServer().getServicesManager().getRegistration(LuckPermsApi.class).getProvider();
         instance = this;

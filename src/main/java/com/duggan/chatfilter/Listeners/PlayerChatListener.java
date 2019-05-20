@@ -21,13 +21,13 @@ import java.util.UUID;
 
 public class PlayerChatListener implements Listener {
 
-    private Main main;
+
     private Prefix prefix;
     private ReplacementWords replacements;
-    public PlayerChatListener(ReplacementWords replacements, Main main) {
+    public PlayerChatListener() {
         this.replacements = replacements;
     }
-    Main.get
+    private Main main = Main.getInstance();
     public String getPrefix(Player player) {
         UserData userData = Main.luckPerms.getUser(player.getUniqueId()).getCachedData();
         Contexts contexts = Main.luckPerms.getContextManager().getApplicableContexts(player);
@@ -46,6 +46,7 @@ public class PlayerChatListener implements Listener {
         e.setCancelled(true);
         Player player = e.getPlayer();
         String prefix = getPrefix(player);
+        player.sendMessage(main.getWordsConfig().getStringList("words").get(1));
         List<String> words = main.getWordsConfig().getStringList("words");
         for (Player on : Bukkit.getOnlinePlayers()) {
             UUID playerUUID = on.getUniqueId();
