@@ -2,12 +2,10 @@ package com.duggan.chatfilter;
 
 import com.duggan.chatfilter.Listeners.PlayerChatListener;
 import me.lucko.luckperms.api.LuckPermsApi;
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
@@ -17,15 +15,17 @@ public class Main extends JavaPlugin {
 
     public static LuckPermsApi luckPerms;
 
-    private static Main instance;
+    private static Main instance = null;
 
     public void onEnable() {
         System.out.println(ChatColor.AQUA + "ChatFilter is enabled");
         getCommand("chatfilter").setExecutor(new StartFilter(new Filters()));
-        getServer().getPluginManager().registerEvents(new PlayerChatListener(), this);
+        getCommand("filterconfig").setExecutor(new ConfigReload());
+        getServer().getPluginManager().registerEvents(new PlayerChatListener(new ReplacementWords()), this);
         loadConfig();
         luckPerms = getServer().getServicesManager().getRegistration(LuckPermsApi.class).getProvider();
         instance = this;
+
     }
 
     public static Main getInstance() {
@@ -33,6 +33,8 @@ public class Main extends JavaPlugin {
     }
 
     public File wordsFile;
+
+    ReplacementWords replacements = new ReplacementWords();
 
     public FileConfiguration words;
 

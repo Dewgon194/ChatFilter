@@ -7,7 +7,7 @@ import java.util.Random;
 public class ReplacementWords {
 
     public String replacementWords() {
-        List words = new ArrayList();
+        List<String> words = new ArrayList<>();
         words.add(0,"Cabbage");
         words.add(1,"Banana");
         words.add(2,"Potato");
@@ -18,7 +18,7 @@ public class ReplacementWords {
         words.add(7,"Carrots");
         Random randomGenerator = new Random();
         int randomInt = randomGenerator.nextInt(7) + 1;
-        String replacement = (String) words.get(randomInt);
+        String replacement = words.get(randomInt);
         return replacement;
     }
 
