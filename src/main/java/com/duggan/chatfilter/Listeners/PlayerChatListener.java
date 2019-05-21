@@ -58,7 +58,7 @@ public class PlayerChatListener implements Listener {
                         e.setCancelled(true);
                         replacedWords.add(words.get(i));
                     }
-                    if (i == 678){
+                    if (i == words.size()-1){
                         for (int x = 0; x < replacedWords.size(); x++){
                             ns = ns.replace(replacedWords.get(x) , replacementWords.replacementWords());
                             if (x == replacedWords.size()-1){

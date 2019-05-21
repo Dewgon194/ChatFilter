@@ -6,3 +6,4 @@ author: Duggan
 description: Allows players to filter swear-words out of chat
 commands:
   chatfilter:
+  filterconfig:
