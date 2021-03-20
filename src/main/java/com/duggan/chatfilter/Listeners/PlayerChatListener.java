@@ -26,13 +26,15 @@ public class PlayerChatListener implements Listener {
     private Prefix prefix;
     private ReplacementWords replacementWords;
     private Main main = Main.getInstance();
+
     public String getPrefix(Player player) {
         UserData userData = Main.luckPerms.getUser(player.getUniqueId()).getCachedData();
         Contexts contexts = Main.luckPerms.getContextManager().getApplicableContexts(player);
 
         return ChatColor.translateAlternateColorCodes('&', userData.getMetaData(contexts).getPrefix());
     }
-    public PlayerChatListener(ReplacementWords replacementWords){
+
+    public PlayerChatListener(ReplacementWords replacementWords) {
         this.replacementWords = replacementWords;
     }
 
@@ -58,10 +60,10 @@ public class PlayerChatListener implements Listener {
                         e.setCancelled(true);
                         replacedWords.add(words.get(i));
                     }
-                    if (i == words.size()-1){
-                        for (int x = 0; x < replacedWords.size(); x++){
-                            ns = ns.replace(replacedWords.get(x) , replacementWords.replacementWords());
-                            if (x == replacedWords.size()-1){
+                    if (i == words.size() - 1) {
+                        for (int x = 0; x < replacedWords.size(); x++) {
+                            ns = ns.replace(replacedWords.get(x), replacementWords.replacementWords());
+                            if (x == replacedWords.size() - 1) {
                                 on.sendMessage(prefix + player.getName() + ": " + ns);
                             }
                         }
